@@ -46,7 +46,18 @@
                     }
                 },
                 series:[{
-                    data:[33,44,55]
+                    data:[33,{
+                        y:44,
+                        dataLabels:{
+                            borderColor:'blue',
+                            borderWidth:2,
+                            padding:20,
+                            shadow:true,
+                            style:{
+                                fontWeight:'bold'
+                            }
+                        }
+                    },55]
                 }]
             });
         });
