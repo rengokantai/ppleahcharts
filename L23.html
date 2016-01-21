@@ -17,7 +17,10 @@
         $(function () {
             $('#container').highcharts({
                 chart:{
-                    marginRight:120
+                    marginRight:120,
+                    borderWidth:1,//`outer` border
+                    plotBorderWidth:1, //`inner` border
+                    spacingLeft:100
                 },
                 legend:{
                     align:'right',
