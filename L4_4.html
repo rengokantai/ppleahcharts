@@ -23,7 +23,12 @@
                     text:'date format'
                 },
                 xAxis:{
-                    type:'datetime'
+                    type:'datetime',
+                    labels:{
+                        formatter:function(){
+                            return Highcharts.dateFormat('%b %e.%Y',this.value,1)
+                        }
+                    }
                 },
                 series:[{
                     name:'tes',
