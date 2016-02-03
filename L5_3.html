@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <style type="text/css">
+        #container {
+            height: 400px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript">
+       var annotateChart = function(event){
+           var x, y,text,box,content;
+           x = event.chartX;
+           y = event.chartY;
+
+           content = $('#annotation').val();
+
+           text = this.renderer.text(content,x,y).attr({
+               zIndex:5
+           }).add();
+
+           box = text.getBBox();
+           this.renderer.rect(box.x-5,box.y-5,box.width+10,box.height+10,5).attr({fill:'#aaa33a',stroke:'gray',strokewidth:1,zIndex:4}).add();
+           $('#annotaion').val('');
+       };
+        $(function(){
+            $('#container').highcharts({
+                chart:{
+                    type:'spline',
+                    events:{click:annotateChart}
+                },
+                title:{
+                    text:'event'
+                },
+                series:[{
+                    name: 'list',
+                    data: [ [2,7],[1,4],[1,9],[6,4],[1,6],[9,4],[3,4],[3,9],[5,1],[8,4]]
+                }]
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="container" style="height: 400px"></div>
+<textarea name="annotation" id="annotation" cols="30" rows="10"></textarea>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+</body>
+</html>
