@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <style type="text/css">
+        #container {
+            height: 400px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var options = {
+                chart:{
+                    type:'spline',
+                    renderTo:'container'
+                },
+                title:{
+                    text:'jsonp'
+                },
+                series:[{}]
+            };
+            var url = "http://localhost/ppleahcharts/L4_6.php?callback=?"
+            $.getJSON(url,function(data){
+
+                options.series[0].data=data;
+                options.title.text=options.title.text+'jsonp';
+                var chart = new Highcharts.Chart(options);
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="container" style="height: 400px"></div>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+</body>
+</html>
