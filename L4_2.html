@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <style type="text/css">
+        #container {
+            height: 400px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('#container').highcharts({
+                chart:{
+                    type:'column'
+                },
+                title:{
+                    text:'drilldown'
+                },
+                xAxis:{
+                    type:'category'
+                },
+                legend:{
+                    enabled:false
+                },
+                lang:{
+                    drillUpText: 'back to:{series.name}'
+                },
+                plotOptions:{
+                    series:{
+                        dataLabels:{
+                            enabled:true
+                        }
+                    }
+                },
+                series:[{
+                    name:'users',
+                    colorByPoint:true,
+                    data:[{
+                        name:'ser1',
+                        y:1000,
+                        drilldown:'a'
+                    },{
+                        name:'ser2',
+                        y:2000,
+                        drilldown:'b'
+                    }]
+                }],
+                drilldown:{
+                    series:[{
+                        id:'a',
+                        name:'ser1',
+                        data:[['ser1a',400],['ser1b',600]]
+                    },{
+                        id:'b',
+                        name:'ser2',
+                        data:[['ser2a',1400],['ser2b',600]]
+                    }]
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="container" style="height: 400px"></div>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+<script src="js/modules/drilldown.js"></script>
+</body>
+</html>

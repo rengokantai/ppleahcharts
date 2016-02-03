@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<chart>
+<categories>
+    <item>ser1</item>
+    <item>ser2</item>
+</categories>
+<series>
+<name>a</name>
+<data>
+    <point>1</point>
+    <point>2</point>
+</data>
+</series>
+<series>
+<name>b</name>
+<data>
+    <point>4</point>
+    <point>2</point>
+</data>
+</series>
+</chart>

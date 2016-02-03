@@ -15,24 +15,30 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            $('#container').highcharts({
+            var options = {
                 chart:{
-                    type:'column'
+                    type:'column',
+                    renderTo:'container'
                 },
                 title:{
-                    text:'basic series types'
+                    text:'json'
                 },
-                series:[{
-                    name:'list',
-                    data:[1,4,6]
-                },{
-                    name:'array of arrays',
-                    data:[[0,5],[1,10],[2,25]]
-                },{
-                    name:'array of objects',
-                    data:[{name:'a',x:0,y:10},{name:'a',x:1,y:40},{name:'a',x:2,y:60,color:'#223344'}]
-                }]
-            });
+                xAxis:{
+                    categories:[]
+                },
+                yAxis:{
+                    title:{
+                        text:'unique'
+                    }
+                },
+                series:[{}]
+            };
+            $.getJSON('L4_3.json',function(data){
+
+                options.series[0].data=data;
+                options.title.text=options.title.text+'json';
+                var chart = new Highcharts.Chart(options);
+            })
         });
     </script>
 </head>

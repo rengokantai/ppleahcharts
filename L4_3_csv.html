@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <style type="text/css">
+        #container {
+            height: 400px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var options = {
+                chart:{
+                    type:'column',
+                    renderTo:'container'
+                },
+                title:{
+                    text:'csv'
+                },
+                xAxis:{
+                    categories:[]
+                },
+                yAxis:{
+                    title:{
+                        text:'unique'
+                    }
+                },
+                series:[{}]
+            };
+            $.get('L4_3.csv',function(data){
+                var lines = data.split('\n');
+
+                $.each(lines,function(lineNo,line){
+                    var items=line.split(',');
+
+                    if(lineNo==0){
+                        $.each(items,function(itemNo,item){
+                            if(itemNo>0){
+                                options.xAxis.categories.push(item);
+                            }
+                        });
+                    }else{
+                        var series={
+                            data:[]
+                        };
+                        $.each(items,function(itemNo,item){
+                            if(itemNo==0){
+                                series.name=item;
+                            }else{
+                                series.data.push(parseFloat(item));
+                            }
+                        });
+                        options.series.push(series);
+                    }
+                });
+                options.title.text=options.title.text+'csv';
+                var chart = new Highcharts.Chart(options);
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="container" style="height: 400px"></div>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+</body>
+</html>
